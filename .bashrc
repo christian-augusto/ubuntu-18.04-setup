@@ -106,6 +106,7 @@ alias gm="git merge"
 alias gr="git rebase"
 alias gd="diff --color --color-words --abbrev"
 alias gbl="git blame"
+alias gf="git fetch -ap"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
