@@ -95,7 +95,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# some git alias commands
+# some git aliases commands
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
@@ -107,6 +107,14 @@ alias gr="git rebase"
 alias gd="diff --color --color-words --abbrev"
 alias gbl="git blame"
 alias gf="git fetch -ap"
+alias gpl="git pull"
+alias gps="git push"
+
+# some docker aliases commands
+alias docker-clean-containers="docker container rm -f \$(docker container ls -aq)"
+alias docker-clean-images="docker image rm -f \$(docker image ls -aq)"
+alias docker-clean-networks="docker network rm \$(docker network ls -q)"
+alias docker-clean="docker-clean-containers;docker-clean-images;docker-clean-networks"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -131,9 +139,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export GPG_TTY=$(tty)
-gpgconf --launch gpg-agent
