@@ -115,7 +115,8 @@ alias gps="git push"
 alias docker-clean-containers="docker container rm -f \$(docker container ls -aq)"
 alias docker-clean-images="docker image rm -f \$(docker image ls -aq)"
 alias docker-clean-networks="docker network rm \$(docker network ls -q)"
-alias docker-clean="docker-clean-containers;docker-clean-images;docker-clean-networks"
+alias docker-clean-volumes="docker volume rm \$(docker volume ls -q)"
+alias docker-clean="docker-clean-containers;docker-clean-images;docker-clean-networks;docker-clean-volumes"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
