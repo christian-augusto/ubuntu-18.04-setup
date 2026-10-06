@@ -1,7 +1,12 @@
 ...
 
+parse_git_branch_name() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    local branch
+    branch=$(parse_git_branch_name)
+    [ -n "$branch" ] && echo "($branch)"
 }
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;90m\]\u:\[\033[01;94m\]\w\[\033[01;95m\] $(parse_git_branch)\$ \[\033[00m\] '
@@ -44,3 +49,6 @@ alias docker-clean-images="docker image rm -f \$(docker image ls -aq)"
 alias docker-clean-networks="docker network rm \$(docker network ls -q)"
 alias docker-clean-volumes="docker volume rm \$(docker volume ls -q)"
 alias docker-clean="docker-clean-containers;docker-clean-images;docker-clean-networks;docker-clean-volumes"
+
+# git alias
+alias update-branch='gf && gre --hard origin/$(parse_git_branch_name) && gpl'
